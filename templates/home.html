@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}Home page{% endblock %}
+{% block content %}
+<head>
+
+</head>
+<body> 
+   <!-- <h1 class="head"> World Wide</h1>
+    Search by Country:
+    <div class="wrap">
+       
+<div class="md-form mt-0">
+   <form action="country" method="POST">
+      <input class="form-control" type="text" name="country" style="text-transform:capitalize" placeholder="Search State" required aria-label="Search">
+    <div class="text-center" style="margin-top: 10px;">
+    <input class="btn btn-primary" type="submit" value="Search">
+    </div>
+    </form>
+  </div>
+     </div> -->
+     <h1 class="head">India Wide</h1>
+     Search by State:
+     <div class="wrap">
+        <!-- Search form -->
+ <div class="md-form mt-0">
+    <form action="state" method="POST">
+        <input class="form-control" type="text" name="state" style="text-transform:capitalize" placeholder="Search State" required aria-label="Search">
+        <div class="text-center" style="margin-top: 10px;">
+        <input class="btn btn-primary" type="submit" value="Search">
+        </div>
+        </form>
+   </div>
+
+</div>
+</body>
+
+{% if data1 %}
+    
+<div class="row" style="text-align: center;">
+<h2> {{state}} </h2>
+<div class="col-md-6">
+   <p>Confirmed : {{data1[0]}} </p>
+   <p>Recovered : {{data1[1]}}</p>
+   <p>Deaths : {{data1[2]}}</p>
+   <p>Active : {{data1[3]}}</p>
+</div>
+<div class="col-md-6">
+   <p>Migrated_Other : {{data1[4]}}</p>
+   <p>Delta_Confirmed : {{data1[5]}} </p>
+  <p>Delta_Recovered : {{data1[6]}}</p>
+  <p>Delta_Deaths : {{data1[7]}}</p>
+</div>
+</div>
+{% else %}
+<div class="row" style="text-align: center;">
+   <h2> {{country}} </h2>
+   <p>{{data2}}</p>
+
+{% endif %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Stylesheets -->
+        
+        
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/style.css') }}" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+             
+                
+                $("#div3").fadeOut(5000);
+              });
+            
+            </script>
+        </head>
+    <body>
+
+        <div class="row header_content">
+            <div class="container">
+                {% include "includes/header.html" %}
+            </div>
+        </div>
+
+        <div class="row layout_content">
+            <div class="container my-5 justify-content-center">
+                <!-- this code is used for showing any sucsees/worning/failur popup message -->
+                
+
+                <!-- every page body content -->
+                {% block content %}
+
+                {% endblock %}
+                
+
+            </div>
+        </div>
+        
+    </body>
+</html>    
