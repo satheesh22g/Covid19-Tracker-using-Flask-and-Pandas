@@ -68,7 +68,8 @@
       </style>
 </head>
 <body> 
-   <!-- <h1 class="head"> World Wide</h1>
+   <a href="{{url_for('world')}}"><h1 class="head"> World Wide</h1></a>
+   
     Search by Country:
     <div class="wrap">
        
@@ -80,8 +81,8 @@
     </div>
     </form>
   </div>
-     </div> -->
-     <h1 class="head">India Wide</h1>
+     </div>
+     <a href="{{url_for('india')}}"> <h1 class="head">India Wide</h1></a>
      Search by State:
      <div class="wrap">
        
@@ -115,22 +116,26 @@
   <p>Delta_Deaths : {{data1[7]}}</p>
 </div>
 </div>
+{% elif data2 %}
+
+<div class="row" style="text-align: center;">
+   <h2> {{country}} </h2>
+   <div>
+      <p>Confirmed : {{data2['confirmed']}} </p>
+      <p>Recovered : {{data2['recovered']}}</p>
+      <p>Deaths : {{data2['deaths']}}</p>
+      <p>Active : {{data2['active']}}</p>
+   </div>
+   
+   </div>
 
 {% else %}
 
 <div>
-   {% with messages = get_flashed_messages() %}
-   {% if messages %}
-
-   <div class="alert">
-     {% for message in messages %}
+     <div class="alert">
         <h4 style="text-align: center;color: red;margin-top: 35px;"><strong> {{ message }} </strong>  </h4>
-     {% endfor %}
-    
    </div>
    
-     {% endif %}
- {% endwith %}
 </div>
 
 
