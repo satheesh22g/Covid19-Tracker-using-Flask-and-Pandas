@@ -3,7 +3,69 @@
 {% block title %}Covid Tracker{% endblock %}
 {% block content %}
 <head>
-
+   <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        font: 16px Arial;  
+      }
+      
+      /*the container must be positioned relative:*/
+      .autocomplete {
+        position: relative;
+        display: inline-block;
+      }
+      
+      input {
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 16px;
+      }
+      
+      input[type=text] {
+        background-color: #f1f1f1;
+        width: 100%;
+      }
+      
+      input[type=submit] {
+        background-color: DodgerBlue;
+        color: #fff;
+        cursor: pointer;
+      }
+      
+      .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+      }
+      
+      .autocomplete-items div {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff; 
+        border-bottom: 1px solid #d4d4d4; 
+      }
+      
+      /*when hovering an item:*/
+      .autocomplete-items div:hover {
+        background-color: #e9e9e9; 
+      }
+      
+      /*when navigating through the items using the arrow keys:*/
+      .autocomplete-active {
+        background-color: DodgerBlue !important; 
+        color: #ffffff; 
+      }
+      </style>
 </head>
 <body> 
    <!-- <h1 class="head"> World Wide</h1>
@@ -22,10 +84,12 @@
      <h1 class="head">India Wide</h1>
      Search by State:
      <div class="wrap">
-        <!-- Search form -->
+       
  <div class="md-form mt-0">
     <form autocomplete="off" action="state" method="POST">
-        <input class="form-control autocomplete" id="myInput" type="text" name="state" style="text-transform:capitalize" placeholder="Search State" required aria-label="Search">
+      <div class="autocomplete" style="width: 100%">
+        <input class="form-control" id="myInput" type="text" name="state" style="text-transform:capitalize" placeholder="Search State" required aria-label="Search">
+      </div>
         <div class="text-center" style="margin-top: 10px;">
         <input class="btn btn-primary" type="submit" value="Search">
         </div>
@@ -33,6 +97,44 @@
    </div>
 
 </div>
+
+{% if data1 %}
+    
+<div class="row" style="text-align: center;">
+<h2> {{state}} </h2>
+<div class="col-md-6">
+   <p>Confirmed : {{data1[0]}} </p>
+   <p>Recovered : {{data1[1]}}</p>
+   <p>Deaths : {{data1[2]}}</p>
+   <p>Active : {{data1[3]}}</p>
+</div>
+<div class="col-md-6">
+   <p>Migrated_Other : {{data1[4]}}</p>
+   <p>Delta_Confirmed : {{data1[5]}} </p>
+  <p>Delta_Recovered : {{data1[6]}}</p>
+  <p>Delta_Deaths : {{data1[7]}}</p>
+</div>
+</div>
+
+{% else %}
+
+<div>
+   {% with messages = get_flashed_messages() %}
+   {% if messages %}
+
+   <div class="alert">
+     {% for message in messages %}
+        <h4 style="text-align: center;color: red;margin-top: 35px;"><strong> {{ message }} </strong>  </h4>
+     {% endfor %}
+    
+   </div>
+   
+     {% endif %}
+ {% endwith %}
+</div>
+
+
+{% endif %}
 
 <script>
    function autocomplete(inp, arr) {
@@ -137,33 +239,23 @@
    
    /*initiate the autocomplete function on the "myInput" element, and pass along the states array as possible autocomplete values:*/
    autocomplete(document.getElementById("myInput"), states);
+
+   $(document).ready(function() {
+
+$('.form-control').keydown(function(event) {
+  // enter has keyCode = 13, change it if you want to use another button
+  if (event.keyCode == 13) {
+    this.form.submit();
+    return false;
+  }
+});
+
+});
    </script>
    
 </body>
 
-{% if data1 %}
-    
-<div class="row" style="text-align: center;">
-<h2> {{state}} </h2>
-<div class="col-md-6">
-   <p>Confirmed : {{data1[0]}} </p>
-   <p>Recovered : {{data1[1]}}</p>
-   <p>Deaths : {{data1[2]}}</p>
-   <p>Active : {{data1[3]}}</p>
-</div>
-<div class="col-md-6">
-   <p>Migrated_Other : {{data1[4]}}</p>
-   <p>Delta_Confirmed : {{data1[5]}} </p>
-  <p>Delta_Recovered : {{data1[6]}}</p>
-  <p>Delta_Deaths : {{data1[7]}}</p>
-</div>
-</div>
-<!-- {% else %}
-<div class="row" style="text-align: center;">
-   <h2> {{country}} </h2>
-   <p>{{data2}}</p> -->
 
-{% endif %}
 
 
 

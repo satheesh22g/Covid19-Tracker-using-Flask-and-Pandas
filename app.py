@@ -25,9 +25,13 @@ def state():
         data.clear()
         for i in result:
             data.append(int(i))
-    
+        if data is not None:
+            return render_template("home.html",data1=data,state=state)
+        else:
+            flash("Invalid State")
+            return render_template("home.html")    
     except:
-        flash("No Data Found")
+        flash("Invalid State")
         return render_template("home.html")
     return render_template("home.html",data1=data,state=state)
 
