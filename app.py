@@ -2,19 +2,23 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, Response
 from datetime import datetime,date
 import pandas as pd
+from covid import Covid
 
 app = Flask(__name__)
 data=[]
-world_total_cases=pd.read_csv('https://covid.ourworldindata.org/data/ecdc/total_cases.csv')
-world_deaths = pd.read_csv('https://covid.ourworldindata.org/data/ecdc/total_deaths.csv')
+covid = Covid()
 # all route starts from here
 @app.route('/')
 @app.route("/home")
 def dashboard():
-
-    return render_template("home.html", home=True)
+    w_active = covid.get_total_active_cases()
+    w_confirmed = covid.get_total_confirmed_cases()
+    w_recovered = covid.get_total_recovered()
+    w_deaths = covid.get_total_deaths()
+    return render_template("home.html")
 @app.route("/state", methods=["GET", "POST"])
 def state():
+    message=""
     state_csv = pd.read_csv('https://api.covid19india.org/csv/latest/state_wise.csv')
     statewise = state_csv.groupby("State").sum()
     try:
@@ -28,21 +32,40 @@ def state():
         if data is not None:
             return render_template("home.html",data1=data,state=state)
         else:
-            flash("Invalid State")
-            return render_template("home.html")    
+            message="Invalid State"
+            return render_template("home.html",message=message)    
     except:
-        flash("Invalid State")
-        return render_template("home.html")
-    return render_template("home.html",data1=data,state=state)
+        message="Invalid State"
+        return render_template("home.html",message=message)
+    return render_template("home.html",data1=data,state=state,message=message)
 
 @app.route("/country", methods=["GET", "POST"])
 def country():
-    country_csv = pd.read_csv('https://covid.ourworldindata.org/data/ecdc/total_cases.csv')
-    countrywise = country_csv.groupby("date").sum()
-    if request.method == "POST":
-        country = request.form.get("country")
-        data=countrywise.loc[str(date.today()),country]
-        return render_template("home.html",data2=data,country=country)
+    try:
+        if request.method == "POST":
+            country = request.form.get("country")
+            data=covid.get_status_by_country_name(country)
+            return render_template("home.html",data2=data,country=country)
+    except:
+        message="Invalid Country"
+        return render_template("home.html",message=message)
+    return render_template("home.html",data1=data,state=state,message=message)
+@app.route("/world")
+def world():
+    w_active = covid.get_total_active_cases()
+    w_confirmed = covid.get_total_confirmed_cases()
+    w_recovered = covid.get_total_recovered()
+    w_deaths = covid.get_total_deaths()    
+    return render_template("world.html",w_active=w_active,w_confirmed=w_confirmed,w_recovered=w_recovered,w_deaths=w_deaths)
+
+@app.route("/india")
+def india():
+    state_csv = pd.read_csv('https://api.covid19india.org/csv/latest/state_wise.csv')
+    statewise = state_csv.groupby("State").sum()
+    total = statewise.loc["Total"]  
+    active=total['Active']
+    return render_template("india.html",i_active=active,i_confirmed=total.Confirmed,i_recovered=total.Recovered,i_deaths=total.Deaths)
+
 # Main
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
