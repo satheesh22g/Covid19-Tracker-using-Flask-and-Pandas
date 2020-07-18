@@ -1,0 +1,63 @@
+
+   {% extends "layout.html" %}
+
+   {% block title %}Covid Tracker{% endblock %}
+   {% block content %}
+   <head>
+       <style>
+           .center,.text-center
+           {
+               text-align: center;
+               
+           }
+           #panel {
+                display: none;
+            }
+       </style>
+   </head>
+   <h1 class="center">India </h1>
+   <div class="row">
+ 
+     <div class="alert alert alert-info col-md-3">
+        <h4 class="center"><strong>Total :{{i_confirmed}}</strong></h4>
+      </div>
+      <div class="alert alert alert-warning col-md-3">
+        <h4 class="center"><strong>Active : {{i_active}}</strong></h4>
+      </div>
+      <div class="alert alert alert-success col-md-3">
+        <h4 class="center" data-toggle="recover" title="Recovery_rate : {{Recovery_rate}}"><strong>Recovered : {{i_recovered}}</strong></h4>
+      </div>
+      <div class="alert alert alert-danger col-md-3">
+        <h4 class="center" data-toggle="death" title="Death_rate : {{Death_rate}}"><strong>Deaths : {{i_deaths}}</strong></h4>
+      </div>
+      
+    </div>
+    <h4>Affect_rate in India: {{Affect_rate}}</h4>
+    <h4>Recovery rate in India : {{Recovery_rate}}</h4>
+    <h4>Death_rate in India: {{Death_rate}}</h4>
+  
+    <a class="btn btn-primary" onclick="myFunction()">Show All Countries</a>
+            
+<div class="row" id="panel">
+  <h1 style="text-align: center;">States List</h1>
+<div class="col-md-12 col-xs-12 col-lg-12">
+  <div class="table-responsive text-center">  
+      <div style="width: 100%;margin-left: 5%;margin-bottom: 5%;">
+        {{ data.to_html(classes="table table-striped") | safe}}
+      </div>
+  </div>
+</div>
+</div>
+<h1>Source</h1>
+1.<a href="https://api.covid19india.org/">COVID19-India API</a></br>
+
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="recover"]').tooltip();   
+  })
+  $(document).ready(function(){
+    $('[data-toggle="death"]').tooltip();   
+  })
+
+  </script>
+{% endblock %}
