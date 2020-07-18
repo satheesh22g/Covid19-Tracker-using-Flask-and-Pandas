@@ -55,8 +55,9 @@ def world():
     w_active = covid.get_total_active_cases()
     w_confirmed = covid.get_total_confirmed_cases()
     w_recovered = covid.get_total_recovered()
-    w_deaths = covid.get_total_deaths()    
-    return render_template("world.html",w_active=w_active,w_confirmed=w_confirmed,w_recovered=w_recovered,w_deaths=w_deaths)
+    w_deaths = covid.get_total_deaths()
+    data = covid.get_data()    
+    return render_template("world.html",w_active=w_active,w_confirmed=w_confirmed,w_recovered=w_recovered,w_deaths=w_deaths,data=data)
 
 @app.route("/india")
 def india():
@@ -64,7 +65,11 @@ def india():
     statewise = state_csv.groupby("State").sum()
     total = statewise.loc["Total"]  
     active=total['Active']
-    return render_template("india.html",i_active=active,i_confirmed=total.Confirmed,i_recovered=total.Recovered,i_deaths=total.Deaths)
+    statewise.sort_values(by=['Confirmed'], inplace=True, ascending=False)
+    Recovery_rate='%.2f' %((total.Recovered/total.Confirmed)*100)
+    Death_rate= '%.2f' %((total.Deaths/total.Confirmed)*100)
+    Affect_rate= '%.2f' %((total.Confirmed/1350000000)*100)
+    return render_template("india.html",i_active=active,i_confirmed=total.Confirmed,i_recovered=total.Recovered,i_deaths=total.Deaths,Recovery_rate=Recovery_rate,Death_rate=Death_rate,Affect_rate=Affect_rate, data=statewise)
 
 # Main
 if __name__ == '__main__':
