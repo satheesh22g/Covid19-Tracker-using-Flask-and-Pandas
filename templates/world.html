@@ -10,9 +10,12 @@
                text-align: center;
                
            }
+           #panel {
+                display: none;
+            }
        </style>
    </head>
-   <h1 class="center">India </h1>
+   <h1 class="center">World </h1>
    <div class="row">
  
      <div class="alert alert alert-info col-md-3">
@@ -29,5 +32,51 @@
       </div>
       
 </div>
+<a class="btn btn-primary" onclick="myFunction()">Show All Countries</a>
+<div class="container-fluid"  id="panel">
+    <h3 class="text-center mb-3">Countries List</h3>
+    <div class="row">
+    
+    <div class="col-md-12 col-lg-12 col-xs-12 ">
+        <div class="table-responsive text-center">
+            <table class="table table-striped table-hover table-condensed table-bordered" style="width: 100%;margin-bottom: 10%;" id="Table">
+                <thead>
+                <tr class="info">
+
+                    <th style="text-align: center;">Country</th>
+                    <th>Total</th>
+                    <th>Active</th>
+                    <th>Recovered</th>
+                    <th>Deaths</th>
+                      
+                </tr>
+                </thead>
+                <tbody id="TablaFamilias">
+                    {% for i in data %}
+                    <tr>
+                      <td>{{i['country'] }}</td>
+                      <td>{{ i['confirmed']}}</td>
+                      <td>{{ i['active']}}</td>
+                     <td>{{ i['recovered']}} </td>
+                     <td>{{i['deaths'] }} </td> 
+                    </tr>
+                 
+                      
+                    {%endfor%}
+    
+                </tbody>
+             
+                <tfoot></tfoot>
+            </table>
+    
+           
+        </div>
+    </div>
+    </div>
+</div>
+<h1>Sources</h1>
+1.<a href="https://coronavirus.jhu.edu/">John Hopkins University</a></br>
+2.<a href="https://data.world/datasets/covid-19">data.world</a>
+
 
 {% endblock %}
