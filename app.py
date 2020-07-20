@@ -69,6 +69,8 @@ def india():
     Recovery_rate='%.2f' %((total.Recovered/total.Confirmed)*100)
     Death_rate= '%.2f' %((total.Deaths/total.Confirmed)*100)
     Affect_rate= '%.2f' %((total.Confirmed/1350000000)*100)
+    statewise['Death_Rate'] = (statewise['Deaths']/statewise['Confirmed'])*100
+    statewise['Recovery_Rate'] = (statewise['Recovered']/statewise['Confirmed'])*100
     return render_template("india.html",i_active=active,i_confirmed=total.Confirmed,i_recovered=total.Recovered,i_deaths=total.Deaths,Recovery_rate=Recovery_rate,Death_rate=Death_rate,Affect_rate=Affect_rate, data=statewise)
 
 # Main
