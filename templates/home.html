@@ -107,16 +107,18 @@
   {% if data1 %}
 <h2> {{state}} </h2>
 <div class="col-md-6">
-   <p>Confirmed : {{data1[0]}} </p>
-   <p>Recovered : {{data1[1]}}</p>
-   <p>Deaths : {{data1[2]}}</p>
-   <p>Active : {{data1[3]}}</p>
+   <p>Confirmed : {{data1[0] | int}} </p>
+   <p>Recovered : {{data1[1] | int}}</p>
+   <p>Deaths : {{data1[2] | int}}</p>
+   <p>Active : {{data1[3] | int}}</p>
+   <h4 style="color: #af0d0d;">Death Rate : {{ "%.2f"|format(data1[8]) }}</h4>
 </div>
 <div class="col-md-6">
-   <p>Migrated_Other : {{data1[4]}}</p>
-   <p>Delta_Confirmed : {{data1[5]}} </p>
-  <p>Delta_Recovered : {{data1[6]}}</p>
-  <p>Delta_Deaths : {{data1[7]}}</p>
+   <p>Migrated_Other : {{data1[4] | int}}</p>
+   <p>Delta_Confirmed : {{data1[5] | int}} </p>
+  <p>Delta_Recovered : {{data1[6] | int}}</p>
+  <p>Delta_Deaths : {{data1[7] | int}}</p>
+  <h4 style="color: rgb(13, 102, 175);">Recovery Rate : {{ "%.2f"|format(data1[9]) }}</h4>
 </div>
 
 {% elif data2 %}
