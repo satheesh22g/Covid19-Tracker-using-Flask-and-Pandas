@@ -12,13 +12,13 @@
 
 
 ### How to Run
-1. Clone this repo
+1. Clone this repo or download zip file.
 2. Unzip the file
-3. go Covid19-tracker-india-using-Flask folder
+3. go Covid19-Tracker-using-Flask-and-Pandas folder
 
-4. install all requirements using pip 
+4. open Command Prompt or Terminal and install all requirements using pip 
 ```
-$ pip install -r requirements.txt]
+$ pip install -r requirements.txt
 ```
 5. Launch application
 ```
