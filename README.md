@@ -28,7 +28,7 @@ $ python app.py
 
 
 ###Demo Screenshots
-![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(1).png)
+![Screenshot](https://github.com/satheesh22g/Covid19-Tracker-using-Flask-and-Pandas/blob/master/screenshots/HomePage.png)
 ![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(2).png)
 ![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(3).png)
 ![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(4).png)
