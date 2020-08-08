@@ -26,11 +26,10 @@ $ python app.py
 ```
 6. Open the browser and go to http://localhost:5000
 
+### Demo Screenshots
 
-###Demo Screenshots
 ![Screenshot](https://github.com/satheesh22g/Covid19-Tracker-using-Flask-and-Pandas/blob/master/screenshots/HomePage.png)
-![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(2).png)
-![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(3).png)
-![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(4).png)
-![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(5).png)
-![Screenshot](https://github.com/satheesh22g/Student-Informative-Chat-Bot-System/blob/master/student_chatbot/Screenshots/Screenshot%20(6).png)
+![Screenshot](https://github.com/satheesh22g/Covid19-Tracker-using-Flask-and-Pandas/blob/master/screenshots/India1.png)
+![Screenshot](https://github.com/satheesh22g/Covid19-Tracker-using-Flask-and-Pandas/blob/master/screenshots/India2.png)
+![Screenshot](https://github.com/satheesh22g/Covid19-Tracker-using-Flask-and-Pandas/blob/master/screenshots/World1.png)
+![Screenshot](https://github.com/satheesh22g/Covid19-Tracker-using-Flask-and-Pandas/blob/master/screenshots/World2.png)
